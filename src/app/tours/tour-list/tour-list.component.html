@@ -1,0 +1,14 @@
+<mat-card class="tour-card" *ngFor="let tour of tours | async">
+  <img mat-card-image [src]="tour.image" alt="{{tour.country}}">
+  <mat-card-content>
+    <h2>{{tour.country}}</h2>
+    <p>
+      {{tour.infoShort}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end" *ngIf="auth.afAuth.authState | async">
+    <button mat-icon-button routerLink="{{tour.id}}">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
