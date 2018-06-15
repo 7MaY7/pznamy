@@ -1,0 +1,36 @@
+<ng-container *ngIf="tour">
+
+  <div [hidden]="!editing">
+    <section>
+      <mat-form-field>
+        <input matInput placeholder="Country" [(ngModel)]="tour.country">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Short description" [(ngModel)]="tour.infoShort">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="accent" (click)="updateTour()">Зберегти</button>
+      <button mat-button (click)="editing=false">Назад</button>
+  </section>
+  </div>
+  
+
+  <div [hidden]="editing">
+    <mat-card class="tour-card">
+      <img mat-card-image [src]="tour.image" alt="{{tour.country}}">
+      <mat-card-content>
+        <h2>{{tour.country}}</h2>
+        <p>{{tour.infoShort}}</p>
+      </mat-card-content>
+      <mat-card-actions align="end" *ngIf="auth.afAuth.authState | async">
+        <button mat-icon-button (click)="editing=true">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteTour()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-container>
