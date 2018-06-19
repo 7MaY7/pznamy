@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TourService } from '../tour.service';
 import { Tour } from '../tour';
 import { AuthService } from '../../core/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertDialogComponent } from '../../shared/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-tour-detail',
@@ -11,6 +13,7 @@ import { AuthService } from '../../core/auth.service';
 })
 export class TourDetailComponent implements OnInit {
   tour: Tour;
+  accessToDelete: boolean;
 
   editing: boolean = false;
 
@@ -18,17 +21,17 @@ export class TourDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public auth: AuthService,
-    private tourService: TourService
+    private tourService: TourService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.getTour();
-    console.log(this);
   }
 
   getTour() {
     const id = this.route.snapshot.paramMap.get('id');
-    return this.tourService.getPostData(id).subscribe(data => this.tour = data);
+    return this.tourService.getTourData(id).subscribe(data => this.tour = data);
   }
 
   updateTour() {
@@ -42,9 +45,17 @@ export class TourDetailComponent implements OnInit {
   }
 
   deleteTour() {
+    const tourImg = this.tour.imageName;
     const id = this.route.snapshot.paramMap.get('id');
-    this.tourService.delete(id);
+    this.tourService.delete(id, tourImg);
     this.router.navigate(["/tours"]);
   }
 
+  // openAlertDialog() {
+  //   let accessToDelete: boolean = false;
+  //   let dialogRef = this.dialog.open(AlertDialogComponent, {
+  //     width: '350px',
+  //     data: {messege: 'Ви впевнені що хочете видалити цей тур?'}
+  //   });
+  // }
 }

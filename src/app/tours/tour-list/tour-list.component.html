@@ -1,14 +1,26 @@
-<mat-card class="tour-card" *ngFor="let tour of tours | async">
-  <img mat-card-image [src]="tour.image" alt="{{tour.country}}">
-  <mat-card-content>
-    <h2>{{tour.country}}</h2>
-    <p>
-      {{tour.infoShort}}
-    </p>
-  </mat-card-content>
-  <mat-card-actions align="end" *ngIf="auth.afAuth.authState | async">
-    <button mat-icon-button routerLink="{{tour.id}}">
-      <mat-icon>edit</mat-icon>
-    </button>
-  </mat-card-actions>
-</mat-card>
+<div class="view">
+    <img src="assets/main-banner.jpg" class="img-fluid" alt="Responsive image">
+    <div class="mask flex-center main-banner">
+        <img src="/assets/logo_full_white.png" alt="logo" class="logo">
+        <br>
+        <h1 class="white-text">Найгарячіші тури тут!</h1>
+        <br>
+        <img class="animated bounce infinite" src="assets/down-arrow.png" width="50px">
+    </div>
+</div>
+<div class="wrapper">
+  <mat-card class="tour-card" *ngFor="let tour of tours | async">
+    <img mat-card-image [src]="tour.image" alt="{{tour.country}}">
+    <mat-card-content>
+      <h2>{{tour.country}}</h2>
+      <p>
+        {{tour.infoShort}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions align="end" *ngIf="auth.afAuth.authState | async">
+      <button *ngIf="auth.currentUserId === tour.authorId" mat-icon-button routerLink="{{tour.id}}">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

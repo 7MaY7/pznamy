@@ -1,13 +1,48 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span routerLink="/">PZN</span>
+    <span>
+      <img src="/assets/logo_full_white.png" alt="logo" class="logo">
+    </span>
     <span class="spacer"></span>
     <div *ngIf="auth.afAuth.authState | async as user; else showLogin">
-      <button mat-raised-button color="accent" routerLink="/dashboard">Add the tour</button>
-      <button mat-button (click)="auth.logout()">Logout</button>
+      <button *ngIf="auth.currentUserId === '1jxrcEz7n5go9vjruM6rYgyH2pJ2'" matTooltip="Додати тур" mat-mini-fab routerLink="/dashboard">
+        <i class="fas fa-plus"></i>
+      </button>
+      <button mat-mini-fab matTooltip="Вийти" (click)="auth.logout()">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
     </div>
     <ng-template #showLogin>
-      <button mat-button (click)="auth.login()">Login</button>
+      <button mat-mini-fab matTooltip="Увійти" (click)="auth.login()">
+        <i class="fas fa-sign-in-alt"></i>
+      </button>
     </ng-template>
   </mat-toolbar-row>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo justify-content-between">
+  <logo routerLink="/">
+      <img src="/assets/logo_full_white.png" alt="logo" class="logo" height="40">
+  </logo>
+
+  <links>
+    <button mat-button>
+      <a class="nav-link waves-light" class="text-white" mdbWavesEffect>Контакти</a>
+    </button>
+
+    <div *ngIf="auth.afAuth.authState | async as user; else showLogin">
+        <button *ngIf="auth.currentUserId === '1jxrcEz7n5go9vjruM6rYgyH2pJ2'" matTooltip="Додати тур" mat-button class="text-white log-buttons" routerLink="/dashboard">
+          <i class="fas fa-plus"></i>
+        </button>
+        <button mat-button matTooltip="Вийти" class="text-white log-buttons" (click)="auth.logout()">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+      <ng-template #showLogin>
+        <button mat-button matTooltip="Увійти" class="text-white log-buttons" (click)="auth.login()">
+          <i class="fas fa-sign-in-alt"></i>
+        </button>
+      </ng-template>
+  </links>
+</mdb-navbar>

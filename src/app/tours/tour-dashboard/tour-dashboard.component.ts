@@ -5,8 +5,6 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthService } from '../../core/auth.service';
 import { TourService } from '../tour.service';
 
-import { finalize } from 'rxjs/operators';
-
 @Component({
   selector: 'app-tour-dashboard',
   templateUrl: './tour-dashboard.component.html',
@@ -17,6 +15,7 @@ export class TourDashboardComponent implements OnInit {
   country: string;
   infoShort: string;
   image: string = null;
+  imageName: string;
 
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
@@ -32,9 +31,12 @@ export class TourDashboardComponent implements OnInit {
 
   createTour() {
     const data = {
+      author: this.auth.authState.displayName || this.auth.authState.email,
+      authorId: this.auth.currentUserId,
       country: this.country,
       infoShort: this.infoShort,
       image: this.image,
+      imageName: this.imageName,
       published: new Date()
     };
 
@@ -53,13 +55,15 @@ export class TourDashboardComponent implements OnInit {
       return alert('only image files can be added');
     } else {
       const task = this.storage.upload(path, file);
+      this.imageName = `${file.name}`;
 
-      this.downloadURL = fileRef.getDownloadURL();
       this.uploadPercent = task.percentageChanges();
 
-      console.log('Image Uploaded!');
-
-      this.downloadURL.subscribe(url => (this.image = url));
+      setTimeout(() => {
+        this.downloadURL = fileRef.getDownloadURL();
+        this.downloadURL.subscribe(url => (this.image = url));
+        console.log('Image Uploaded!');
+      }, 6000);
     }
   }
 }

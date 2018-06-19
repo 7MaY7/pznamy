@@ -23,7 +23,7 @@
         <h2>{{tour.country}}</h2>
         <p>{{tour.infoShort}}</p>
       </mat-card-content>
-      <mat-card-actions align="end" *ngIf="auth.afAuth.authState | async">
+      <mat-card-actions *ngIf="auth.afAuth.authState | async">
         <button mat-icon-button (click)="editing=true">
           <mat-icon>edit</mat-icon>
         </button>
