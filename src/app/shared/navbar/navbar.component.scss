@@ -1,11 +1,8 @@
-.spacer {
-    flex: 1 1 auto;
+.log-buttons {
+    width: auto;
+    min-width: 20px;
 }
-span {
-    cursor: pointer;
 
-    &:focus {
-        outline: none;
-        border: 0;
-    }
+links {
+    justify-content: flex-end;
 }

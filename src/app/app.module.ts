@@ -10,15 +10,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { environment } from '../environments/environment';
 
-
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ToursModule } from './tours/tours.module';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/tours', pathMatch: 'full'},
-  {path: '', loadChildren: './tours/tours.module#ToursModule'}
+  { path: '', redirectTo: '/tours', pathMatch: 'full' },
+  { path: '', loadChildren: './tours/tours.module#ToursModule' }
 ];
 
 @NgModule({

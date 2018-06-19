@@ -10,4 +10,11 @@ section {
 .tour-card {
     max-width: 900px;
     margin: 2em auto;
+
+    mat-card-actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 0;
+    }
 }
