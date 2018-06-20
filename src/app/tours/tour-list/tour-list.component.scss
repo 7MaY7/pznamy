@@ -9,4 +9,11 @@
 .tour-card {
     max-width: 900px;
     margin: 2em auto;
+    position: relative;
+
+    .edit-button {
+        position: absolute;
+        left: 20px;
+        bottom: 5px;
+    }
 }

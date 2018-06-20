@@ -5,16 +5,30 @@
       <mat-progress-bar mode="determinate" value="{{uploadPercent | async}}" color="primary"></mat-progress-bar>
     </div>
     <div [hidden]="!image">
-       <img [src]="image || '//:0'"> <!-- //:0 - fake data to prevent 404 error -->
+      <img [src]="image || '//:0'">
+      <!-- //:0 - fake data to prevent 404 error -->
     </div>
   </div>
 
   <mat-form-field>
-    <input matInput placeholder="Country" [(ngModel)]="country">
-  </mat-form-field><br>
-  <mat-form-field>
-    <input matInput placeholder="Short description" [(ngModel)]="infoShort">
+    <input matInput placeholder="Країна" [(ngModel)]="country">
   </mat-form-field>
   <br>
-  <button mat-raised-button color="accent" (click)="createTour()" [disabled]="!country || !infoShort">Create Tour</button>
+  <mat-form-field>
+    <input matInput placeholder="Місто" [(ngModel)]="city">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="dateFrom" placeholder="Дата з:">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Опис" [(ngModel)]="infoShort">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="accent" (click)="createTour()" [disabled]="!country || !infoShort || !city">
+    Додати тур
+  </button>
 </section>

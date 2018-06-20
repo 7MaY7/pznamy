@@ -13,6 +13,8 @@ import { TourService } from '../tour.service';
 export class TourDashboardComponent implements OnInit {
 
   country: string;
+  city: string;
+  dateFrom: Date;
   infoShort: string;
   image: string = null;
   imageName: string;
@@ -34,6 +36,8 @@ export class TourDashboardComponent implements OnInit {
       author: this.auth.authState.displayName || this.auth.authState.email,
       authorId: this.auth.currentUserId,
       country: this.country,
+      city: this.city,
+      dateFrom: this.dateFrom,
       infoShort: this.infoShort,
       image: this.image,
       imageName: this.imageName,
@@ -42,6 +46,7 @@ export class TourDashboardComponent implements OnInit {
 
     this.tourService.create(data);
     this.country = '';
+    this.city = '';
     this.infoShort = '';
     this.image = '';
   }

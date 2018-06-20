@@ -3,24 +3,35 @@
   <div [hidden]="!editing">
     <section>
       <mat-form-field>
-        <input matInput placeholder="Country" [(ngModel)]="tour.country">
+        <input matInput placeholder="Країна" [(ngModel)]="tour.country">
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput placeholder="Short description" [(ngModel)]="tour.infoShort">
+        <input matInput placeholder="Місто" [(ngModel)]="tour.city">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dateFrom" placeholder="Дата з:">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Опис" [(ngModel)]="tour.infoShort">
       </mat-form-field>
       <br>
       <button mat-raised-button color="accent" (click)="updateTour()">Зберегти</button>
       <button mat-button (click)="editing=false">Назад</button>
-  </section>
+    </section>
   </div>
-  
+
 
   <div [hidden]="editing">
     <mat-card class="tour-card">
-      <img mat-card-image [src]="tour.image" alt="{{tour.country}}">
+      <img mat-card-image [src]="tour.image" alt="{{tour.country +', '+ tour.city }}">
       <mat-card-content>
-        <h2>{{tour.country}}</h2>
+        <h2>{{tour.country +", "+ tour.city }}</h2>
+        <h4>{{tour.dateFrom.toDate() | date: "dd.MM.y"}}</h4>
         <p>{{tour.infoShort}}</p>
       </mat-card-content>
       <mat-card-actions *ngIf="auth.afAuth.authState | async">
