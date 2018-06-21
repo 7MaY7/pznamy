@@ -32,3 +32,16 @@
     Додати тур
   </button>
 </section>
+
+<div class="container">
+  <h1>Запити:</h1>
+  <mat-card class="rqs-card" *ngFor="let requests of tourRqs | async">
+    <mat-card-content>
+      <h2>{{requests.email}}</h2>
+      <h4>{{requests.phone}}</h4>
+      <p>
+        {{requests.description}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

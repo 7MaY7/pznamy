@@ -5,6 +5,7 @@ import { Tour } from '../tour';
 import { AuthService } from '../../core/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from '../../shared/alert-dialog/alert-dialog.component';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-tour-detail',
