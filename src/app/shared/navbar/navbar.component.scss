@@ -1,3 +1,11 @@
+*:focus {
+    outline: none !important;
+}
+
+body {
+    overflow-x: hidden;
+}
+
 .log-buttons {
     width: auto;
     min-width: 20px;
