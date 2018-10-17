@@ -4,6 +4,8 @@ import { AngularFireStorage } from 'angularfire2/storage';
 
 import { AuthService } from '../../core/auth.service';
 import { TourService } from '../tour.service';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Rqs } from 'src/app/tours/rqs';
 
 @Component({
   selector: 'app-tour-dashboard',
@@ -13,6 +15,8 @@ import { TourService } from '../tour.service';
 export class TourDashboardComponent implements OnInit {
 
   country: string;
+  city: string;
+  dateFrom: Date;
   infoShort: string;
   image: string = null;
   imageName: string;
@@ -20,13 +24,19 @@ export class TourDashboardComponent implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
 
+  tourRequests: AngularFirestoreCollection<Rqs>;
+  tourRqs: Observable<Rqs[]>;
+
   constructor(
     private auth: AuthService,
     private tourService: TourService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private afs: AngularFirestore,
   ) { }
 
   ngOnInit() {
+    this.tourRequests = this.afs.collection('tourRequests');
+    this.tourRqs = this.tourRequests.valueChanges();
   }
 
   createTour() {
@@ -34,6 +44,8 @@ export class TourDashboardComponent implements OnInit {
       author: this.auth.authState.displayName || this.auth.authState.email,
       authorId: this.auth.currentUserId,
       country: this.country,
+      city: this.city,
+      dateFrom: this.dateFrom,
       infoShort: this.infoShort,
       image: this.image,
       imageName: this.imageName,
@@ -42,6 +54,7 @@ export class TourDashboardComponent implements OnInit {
 
     this.tourService.create(data);
     this.country = '';
+    this.city = '';
     this.infoShort = '';
     this.image = '';
   }

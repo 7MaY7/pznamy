@@ -9,19 +9,25 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.component';
+import { ContactFormDialogComponent } from './shared/contact-form-dialog/contact-form-dialog.component';
+
+import { MatNativeDateModule } from '@angular/material';
 
 
 @NgModule({
   imports: [MatButtonModule,
     MatCardModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
+    MatNativeDateModule,
     MatProgressBarModule,
     MatToolbarModule,
     MatTooltipModule,
@@ -29,10 +35,12 @@ import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.compone
 
   exports: [MatButtonModule,
     MatCardModule,
+    MatDatepickerModule,
     MatDialogModule,
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
+    MatNativeDateModule,
     MatProgressBarModule,
     MatToolbarModule,
     MatTooltipModule,
@@ -40,6 +48,6 @@ import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.compone
 
   schemas: [NO_ERRORS_SCHEMA],
 
-  entryComponents: [AlertDialogComponent]
+  entryComponents: [AlertDialogComponent, ContactFormDialogComponent]
 })
 export class MaterialModule { }

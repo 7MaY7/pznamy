@@ -5,6 +5,7 @@ import { Tour } from '../tour';
 import { AuthService } from '../../core/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from '../../shared/alert-dialog/alert-dialog.component';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-tour-detail',
@@ -13,7 +14,6 @@ import { AlertDialogComponent } from '../../shared/alert-dialog/alert-dialog.com
 })
 export class TourDetailComponent implements OnInit {
   tour: Tour;
-  accessToDelete: boolean;
 
   editing: boolean = false;
 
@@ -37,6 +37,8 @@ export class TourDetailComponent implements OnInit {
   updateTour() {
     const formData = {
       country: this.tour.country,
+      city: this.tour.city,
+      dateFrom: this.tour.dateFrom,
       infoShort: this.tour. infoShort
     };
     const id = this.route.snapshot.paramMap.get('id');
@@ -52,7 +54,6 @@ export class TourDetailComponent implements OnInit {
   }
 
   // openAlertDialog() {
-  //   let accessToDelete: boolean = false;
   //   let dialogRef = this.dialog.open(AlertDialogComponent, {
   //     width: '350px',
   //     data: {messege: 'Ви впевнені що хочете видалити цей тур?'}

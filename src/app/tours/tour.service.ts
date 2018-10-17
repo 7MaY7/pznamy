@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core'
 import { map } from 'rxjs/operators';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument
-} from 'angularfire2/firestore'
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore'
 import { Tour } from './tour'
 import { AngularFireStorage } from 'angularfire2/storage';
+import { MatDialog } from '@angular/material/dialog';
+import { ContactFormDialogComponent } from '../shared/contact-form-dialog/contact-form-dialog.component';
 import * as firebase from 'firebase/app';
 
 @Injectable()
@@ -14,7 +12,7 @@ export class TourService {
   toursCollection: AngularFirestoreCollection<Tour>
   tourDoc: AngularFirestoreDocument<Tour>
 
-  constructor(private afs: AngularFirestore, private fi: AngularFireStorage) {
+  constructor(private afs: AngularFirestore, private fi: AngularFireStorage, public dialog: MatDialog) {
     this.toursCollection = this.afs.collection('tours', ref =>
       ref.orderBy('published', 'desc')
     )
@@ -58,5 +56,11 @@ export class TourService {
 
   update(id: string, formData) {
     return this.getTour(id).update(formData);
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(ContactFormDialogComponent, {
+      width: '350px'
+    });
   }
 }

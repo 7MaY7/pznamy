@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Tour } from '../tour';
 import { TourService } from '../tour.service';
 import { AuthService } from '../../core/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tour-list',
@@ -10,14 +11,20 @@ import { AuthService } from '../../core/auth.service';
   styleUrls: ['./tour-list.component.scss']
 })
 export class TourListComponent implements OnInit {
-  tours: Observable<Tour[]>
+  tours: Observable<Tour[]>;
+  tour: Tour;
 
-  constructor(private tourService: TourService,
+  constructor(private route: ActivatedRoute, 
+              private tourService: TourService,
               private auth: AuthService
             ) { }
 
   ngOnInit() {
     this.tours = this.tourService.getTours();
+  }
+
+  openContactFormDialog() {
+    this.tourService.openDialog();
   }
 
 }
