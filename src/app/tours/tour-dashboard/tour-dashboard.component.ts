@@ -57,6 +57,7 @@ export class TourDashboardComponent implements OnInit {
     this.city = '';
     this.infoShort = '';
     this.image = '';
+    this.dateFrom = null;
   }
 
   uploadImage(event) {

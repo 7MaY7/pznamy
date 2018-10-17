@@ -1,3 +1,10 @@
+.view {
+    width: 100vw;
+    height: calc(100vh - 56px);
+    background: lightgray url('/assets/main-banner.jpg') center;
+    background-size: cover;
+}
+
 .main-banner {
     flex-direction: column;
 }
@@ -16,4 +23,8 @@
         left: 20px;
         bottom: 5px;
     }
+}
+.mat-card-image {
+    min-height: 675px;
+    background-color: lightgray;
 }
