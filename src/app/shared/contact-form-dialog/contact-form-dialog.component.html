@@ -1,3 +1,24 @@
-<p>
-  contact-form-dialog works!
-</p>
+<form [formGroup]="contactForm" (onSubmit)='sendRequest()'>
+  <h1>Зворотній зв'язок:</h1>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Імя" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="text" placeholder="Номер телефону" formControlName="phone">
+    </mat-form-field>
+  
+  <mat-form-field>
+    <input matInput placeholder="Електронна пошта" formControlName="email">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <textarea matInput placeholder="Коментар" formControlName="comment"></textarea>
+  </mat-form-field>
+
+  <div>
+     <button mat-raised-button type="submit" class="success-btn" [disabled]="!contactForm.valid">Надіслати</button>
+  </div>
+  
+</form>

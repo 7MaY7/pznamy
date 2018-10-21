@@ -11,6 +11,11 @@ body {
 
 .success-btn {
     background-color: $success !important;
+    color: $white !important;
+
+    &[disabled] {
+        background-color: $disabled !important;
+    }
 }
 
 .mat-dialog-container {

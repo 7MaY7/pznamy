@@ -12,13 +12,14 @@
 }
 
 .wrapper {
-    margin-top: -100px;
+    margin-top: -50px;
 }
 
 .tour-card {
     max-width: 900px;
     margin: 2em auto;
     position: relative;
+    border: 2px solid $white;
 
     .edit-button {
         position: absolute;
