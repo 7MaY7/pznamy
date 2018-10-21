@@ -5,7 +5,10 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button mat-button matDialogClose>Close dialog</button>
-    <button mat-button>Action</button>
-    
+    <button mat-mini-fab color='warn' matDialogClose>
+        <mat-icon>close</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="deleteTour(data.tourId, data.tourImg)" class='success-btn'>
+        <mat-icon>done</mat-icon>
+    </button>  
 </mat-dialog-actions>

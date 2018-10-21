@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'app/variables';
 body {
     height: 100%;
     margin: 0;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+.success-btn {
+    background-color: $success !important;
+}
+
+.mat-dialog-container {
+    text-align: center;
 }

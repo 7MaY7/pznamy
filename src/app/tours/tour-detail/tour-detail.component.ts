@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TourService } from '../tour.service';
-import { Tour } from '../tour';
-import { AuthService } from '../../core/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { AlertDialogComponent } from '../../shared/alert-dialog/alert-dialog.component';
 import { AngularFirestore } from 'angularfire2/firestore';
+
+import { Tour } from '../tour';
+import { TourService } from '../tour.service';
+import { AuthService } from '../../core/auth.service';
+import { AlertDialogComponent } from '../../shared/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-tour-detail',
@@ -46,17 +47,12 @@ export class TourDetailComponent implements OnInit {
     this.editing = false;
   }
 
-  deleteTour() {
-    const tourImg = this.tour.imageName;
-    const id = this.route.snapshot.paramMap.get('id');
-    this.tourService.delete(id, tourImg);
-    this.router.navigate(["/tours"]);
+  openAlertDialog() {
+    let dialogRef = this.dialog.open(AlertDialogComponent, {
+      width: '350px',
+      data: {messege: 'Ви впевнені що хочете видалити цей тур?',
+             tourId: this.route.snapshot.paramMap.get('id'),
+             tourImg: this.tour.imageName}
+    });
   }
-
-  // openAlertDialog() {
-  //   let dialogRef = this.dialog.open(AlertDialogComponent, {
-  //     width: '350px',
-  //     data: {messege: 'Ви впевнені що хочете видалити цей тур?'}
-  //   });
-  // }
 }
