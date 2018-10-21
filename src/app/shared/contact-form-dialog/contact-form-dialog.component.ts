@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TourService } from '../../tours/tour.service';
 
 @Component({
   selector: 'app-contact-form-dialog',
@@ -9,20 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ContactFormDialogComponent implements OnInit {
 
   contactForm: FormGroup;
-  post:any;                     // A property for our submitted form
-  
-  name:string = '';
-  phone:string = '';
-  email:string = '';
-  comment:string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private tourService: TourService,
+    private fb: FormBuilder
+    ) {
     this.contactForm = fb.group({
-      'name' : [null, Validators.required],
-      'phone' : [null, Validators.required],
-      'email' : [null, Validators.compose([Validators.required, Validators.email])],
-      'comment' : [null],
-      'validate' : ''
+      'name' : ['', Validators.required],
+      'phone' : ['', Validators.required],
+      'email' : ['', Validators.compose([Validators.required, Validators.email])],
+      'comment' : ['']
     });
   }
 
@@ -30,7 +27,12 @@ export class ContactFormDialogComponent implements OnInit {
   }
 
   sendRequest() {
-    console.warn(this.contactForm.value);
-  }
+    const data = this.contactForm.value;
+    data.requested = new Date();
 
+    this.tourService.addRequest(data);
+    console.log('sended');
+
+    this.contactForm.reset();
+  }
 }

@@ -2,19 +2,22 @@ import { Injectable } from '@angular/core'
 import { map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore'
 import { Tour } from './tour'
+import { tourRequest } from './tourRequest'
 import { AngularFireStorage } from 'angularfire2/storage';
-import { MatDialog } from '@angular/material/dialog';
-import { ContactFormDialogComponent } from '../shared/contact-form-dialog/contact-form-dialog.component';
 import * as firebase from 'firebase/app';
 
 @Injectable()
 export class TourService {
   toursCollection: AngularFirestoreCollection<Tour>
+  tourRequests: AngularFirestoreCollection<tourRequest>
   tourDoc: AngularFirestoreDocument<Tour>
 
-  constructor(private afs: AngularFirestore, private fi: AngularFireStorage, public dialog: MatDialog) {
+  constructor(private afs: AngularFirestore, private fi: AngularFireStorage) {
     this.toursCollection = this.afs.collection('tours', ref =>
       ref.orderBy('published', 'desc')
+    )
+    this.tourRequests = this.afs.collection('tourRequests', ref =>
+      ref.orderBy('requested', 'desc')
     )
   }
 
@@ -34,6 +37,10 @@ export class TourService {
   }
   create(data: Tour) {
     this.toursCollection.add(data);
+  }
+
+  addRequest(data) {
+    this.tourRequests.add(data);
   }
 
 
@@ -56,11 +63,5 @@ export class TourService {
 
   update(id: string, formData) {
     return this.getTour(id).update(formData);
-  }
-
-  openDialog() {
-    let dialogRef = this.dialog.open(ContactFormDialogComponent, {
-      width: '350px'
-    });
   }
 }

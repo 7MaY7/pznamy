@@ -3,7 +3,10 @@ import { Observable } from 'rxjs';
 import { Tour } from '../tour';
 import { TourService } from '../tour.service';
 import { AuthService } from '../../core/auth.service';
+
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ContactFormDialogComponent } from '../../shared/contact-form-dialog/contact-form-dialog.component';
 
 @Component({
   selector: 'app-tour-list',
@@ -16,7 +19,8 @@ export class TourListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, 
               private tourService: TourService,
-              private auth: AuthService
+              private auth: AuthService, 
+              public dialog: MatDialog
             ) { }
 
   ngOnInit() {
@@ -24,7 +28,9 @@ export class TourListComponent implements OnInit {
   }
 
   openContactFormDialog() {
-    this.tourService.openDialog();
+    let dialogRef = this.dialog.open(ContactFormDialogComponent, {
+      width: '350px'
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="contactForm" (onSubmit)='sendRequest()'>
+<form [formGroup]="contactForm">
   <h1>Зворотній зв'язок:</h1>
 
   <mat-form-field>
@@ -6,7 +6,7 @@
   </mat-form-field>
 
   <mat-form-field>
-      <input matInput type="text" placeholder="Номер телефону" formControlName="phone">
+      <input matInput type="number" placeholder="Номер телефону" formControlName="phone">
     </mat-form-field>
   
   <mat-form-field>
@@ -18,7 +18,7 @@
   </mat-form-field>
 
   <div>
-     <button mat-raised-button type="submit" class="success-btn" [disabled]="!contactForm.valid">Надіслати</button>
+     <button mat-raised-button class="success-btn" [disabled]="!contactForm.valid" (click)='sendRequest()'>Надіслати</button>
   </div>
   
 </form>
