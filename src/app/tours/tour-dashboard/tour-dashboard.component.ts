@@ -5,7 +5,6 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { AuthService } from '../../core/auth.service';
 import { TourService } from '../tour.service';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Rqs } from 'src/app/tours/rqs';
 import { tourRequest } from '../tourRequest';
 
 @Component({

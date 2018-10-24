@@ -37,6 +37,7 @@
   <h1>Запити:</h1>
   <mat-card class="rqs-card" *ngFor="let requests of tourRqs | async">
     <mat-card-content>
+      {{ requests.requested.toDate() | date: "dd.MM.y" }}
       <h2>Ім'я: {{requests.name}}</h2>
       <h3>Мейл: {{requests.email}}</h3>
       <h4>Номер тел: {{requests.phone}}</h4>

@@ -28,7 +28,7 @@ export class TourListComponent implements OnInit {
   }
 
   openContactFormDialog() {
-    let dialogRef = this.dialog.open(ContactFormDialogComponent, {
+    this.dialog.open(ContactFormDialogComponent, {
       width: '350px'
     });
   }

@@ -10,6 +10,7 @@ import { TourService } from '../../tours/tour.service';
 export class ContactFormDialogComponent implements OnInit {
 
   contactForm: FormGroup;
+  sended: boolean = false;
 
   constructor(
     private tourService: TourService,
@@ -31,7 +32,7 @@ export class ContactFormDialogComponent implements OnInit {
     data.requested = new Date();
 
     this.tourService.addRequest(data);
-    console.log('sended');
+    this.sended = true;
 
     this.contactForm.reset();
   }

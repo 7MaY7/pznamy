@@ -1,24 +1,32 @@
+<div class="contact-form-wrap">
 <form [formGroup]="contactForm">
-  <h1>Зворотній зв'язок:</h1>
+    <h1>Зворотній зв'язок:</h1>
 
-  <mat-form-field>
-    <input matInput type="text" placeholder="Імя" formControlName="name">
-  </mat-form-field>
-
-  <mat-form-field>
-      <input matInput type="number" placeholder="Номер телефону" formControlName="phone">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Імя" formControlName="name">
     </mat-form-field>
-  
-  <mat-form-field>
-    <input matInput placeholder="Електронна пошта" formControlName="email">
-  </mat-form-field>
-  
-  <mat-form-field>
-    <textarea matInput placeholder="Коментар" formControlName="comment"></textarea>
-  </mat-form-field>
 
-  <div>
-     <button mat-raised-button class="success-btn" [disabled]="!contactForm.valid" (click)='sendRequest()'>Надіслати</button>
+    <mat-form-field>
+        <input matInput type="number" placeholder="Номер телефону" formControlName="phone">
+      </mat-form-field>
+    
+    <mat-form-field>
+      <input matInput placeholder="Електронна пошта" formControlName="email">
+    </mat-form-field>
+    
+    <mat-form-field>
+      <textarea matInput placeholder="Коментар" formControlName="comment"></textarea>
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button class="success-btn" [disabled]="!contactForm.valid" (click)='sendRequest()'>Надіслати</button>
+    </div>
+  </form>
+
+  <div class="successfuly-sended" *ngIf="!sended">
+    <i class="material-icons airplane">
+      airplanemode_active
+    </i>
+    success
   </div>
-  
-</form>
+</div>
