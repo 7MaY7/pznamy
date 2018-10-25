@@ -4,12 +4,22 @@ section {
 
     mat-form-field {
         width: 100%;
+
+        &.short-input {
+            width: 15%;
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
 
     img {
         width: 100%;
     }
 }
+
 .container {
     h1 {
         text-align: center;

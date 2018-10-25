@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 import { AuthService } from '../../core/auth.service';
 import { TourService } from '../tour.service';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { tourRequest } from '../tourRequest';
 
 @Component({
@@ -13,6 +14,8 @@ import { tourRequest } from '../tourRequest';
   styleUrls: ['./tour-dashboard.component.scss']
 })
 export class TourDashboardComponent implements OnInit {
+
+  addNewTourForm: FormGroup;
 
   country: string;
   city: string;
@@ -32,7 +35,21 @@ export class TourDashboardComponent implements OnInit {
     private tourService: TourService,
     private storage: AngularFireStorage,
     private afs: AngularFirestore,
-  ) { }
+    private fb: FormBuilder
+  ) {
+    this.addNewTourForm = fb.group({
+      'image' : [''],
+      'country' : ['', Validators.required],
+      'city' : ['', Validators.required],
+      'dateFrom' : ['', Validators.required],
+      'days' : ['', Validators.required],
+      'foodType' : [''],
+      'persons' : ['', Validators.required],
+      'children' : [''],
+      'price' : [''],
+      'info' : ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
     this.tourRequests = this.afs.collection('tourRequests');
@@ -40,25 +57,30 @@ export class TourDashboardComponent implements OnInit {
   }
 
   createTour() {
-    const data = {
-      author: this.auth.authState.displayName || this.auth.authState.email,
-      authorId: this.auth.currentUserId,
-      country: this.country,
-      city: this.city,
-      dateFrom: this.dateFrom,
-      infoShort: this.infoShort,
-      image: this.image,
-      imageName: this.imageName,
-      published: new Date()
-    };
+    console.log(this.addNewTourForm.value);
+    const data = this.addNewTourForm.value;
+    data.autor = this.auth.authState.displayName || this.auth.authState.email;
+    data.autorId = this.auth.currentUserId;
+    data.published = new Date();
+      // author: this.auth.authState.displayName || this.auth.authState.email,
+      // authorId: this.auth.currentUserId,
+      // country: this.country,
+      // city: this.city,
+      // dateFrom: this.dateFrom,
+      // infoShort: this.infoShort,
+      // image: this.image,
+      // imageName: this.imageName,
+      // published: new Date()
 
     this.tourService.create(data);
 
-    this.country = '';
-    this.city = '';
-    this.infoShort = '';
-    this.image = '';
-    this.dateFrom = null;
+    this.addNewTourForm.reset();
+
+    // this.country = '';
+    // this.city = '';
+    // this.infoShort = '';
+    // this.image = '';
+    // this.dateFrom = null;
   }
 
   uploadImage(event) {
