@@ -40,7 +40,7 @@ export class TourDetailComponent implements OnInit {
       country: this.tour.country,
       city: this.tour.city,
       dateFrom: this.tour.dateFrom,
-      infoShort: this.tour. infoShort
+      infoShort: this.tour.info
     };
     const id = this.route.snapshot.paramMap.get('id');
     this.tourService.update(id, formData);

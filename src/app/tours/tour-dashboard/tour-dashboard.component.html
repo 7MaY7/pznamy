@@ -1,20 +1,15 @@
 <section>
-    <!-- <div>
-        <mat-form-field>
-          <input type="file" name="file" id="file" (change)="uploadImage($event)">
-        </mat-form-field>
-        <div [hidden]="!uploadPercent">
-          <mat-progress-bar mode="determinate" value="{{uploadPercent | async}}" color="primary"></mat-progress-bar>
-        </div>
-        <div [hidden]="!image">
-          <img [src]="image || '//:0'"> -->
-          <!-- //:0 - fake data to prevent 404 error -->
-        <!-- </div>
-      </div> -->
+    <h1>Додати тур:</h1>
+    <p>Картинка:</p>
+    <input type="file" (change)="uploadImage($event)">
+    <div [hidden]="!uploadPercent">
+      <mat-progress-bar mode="determinate" value="{{uploadPercent | async}}" color="primary"></mat-progress-bar>
+    </div>
+    <div [hidden]="!image">
+      <img [src]="image || '//:0'"><!-- //:0 - fake data to prevent 404 error -->
+    </div>
 
   <form [formGroup]="addNewTourForm">
-    <h1>Додати тур:</h1>
-
     <mat-form-field>
       <input matInput type="text" placeholder="Країна" formControlName="country">
     </mat-form-field>

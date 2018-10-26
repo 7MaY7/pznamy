@@ -9,13 +9,18 @@
 </div>
 <div class="wrapper">
   <mat-card class="tour-card" *ngFor="let tour of tours | async">
-    <img mat-card-image [src]="tour.image" alt="{{tour.country +', '+ tour.city }}">
+    <img mat-card-image [src]="tour.image" alt="{{tour.country}},{{tour.city }}">
     <mat-card-content>
-      <h2>{{tour.country +", "+ tour.city }}</h2>
-      <div class="overal-info"></div>
-      <h4>{{tour.dateFrom.toDate() | date: "dd.MM.y"}}</h4>
-      <p>
-        {{tour.infoShort}}
+      <h2>{{tour.country}}, {{tour.city }}</h2>
+      <div class="overal-info">
+        <span>Старт: {{tour.dateFrom.toDate() | date: "dd.MM.y"}}</span>
+        <span>Тривалісь: {{tour.days}} днів</span>
+        <span>Харчування: {{tour.foodType}}</span>
+        <span>Людей: {{tour.persons}}/{{tour.children}}</span>
+        <span>Ціна: {{tour.price | currency:'EUR':'symbol'}}</span>
+      </div>
+      <p class="tour-info">
+        {{tour.info}}
       </p>
     </mat-card-content>
     <mat-card-actions align="center">

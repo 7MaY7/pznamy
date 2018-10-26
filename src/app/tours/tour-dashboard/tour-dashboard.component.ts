@@ -17,10 +17,6 @@ export class TourDashboardComponent implements OnInit {
 
   addNewTourForm: FormGroup;
 
-  country: string;
-  city: string;
-  dateFrom: Date;
-  infoShort: string;
   image: string = null;
   imageName: string;
 
@@ -45,7 +41,7 @@ export class TourDashboardComponent implements OnInit {
       'days' : ['', Validators.required],
       'foodType' : [''],
       'persons' : ['', Validators.required],
-      'children' : [''],
+      'children' : [0],
       'price' : [''],
       'info' : ['', Validators.required]
     });
@@ -59,28 +55,17 @@ export class TourDashboardComponent implements OnInit {
   createTour() {
     console.log(this.addNewTourForm.value);
     const data = this.addNewTourForm.value;
-    data.autor = this.auth.authState.displayName || this.auth.authState.email;
-    data.autorId = this.auth.currentUserId;
+    data.author = this.auth.authState.displayName || this.auth.authState.email;
+    data.authorId = this.auth.currentUserId;
     data.published = new Date();
-      // author: this.auth.authState.displayName || this.auth.authState.email,
-      // authorId: this.auth.currentUserId,
-      // country: this.country,
-      // city: this.city,
-      // dateFrom: this.dateFrom,
-      // infoShort: this.infoShort,
-      // image: this.image,
-      // imageName: this.imageName,
-      // published: new Date()
+    data.image = this.image;
+    data.imageName = this.imageName;
 
     this.tourService.create(data);
 
     this.addNewTourForm.reset();
-
-    // this.country = '';
-    // this.city = '';
-    // this.infoShort = '';
-    // this.image = '';
-    // this.dateFrom = null;
+    this.image ='';
+    this.imageName ='';
   }
 
   uploadImage(event) {

@@ -27,11 +27,20 @@
     }
 
     .mat-card-image {
-        min-height: 500px;
         background-color: $light-gray;
     }
 
     .mat-card-content {
         text-align: center;
+    }
+
+    .overal-info {
+        display: flex;
+        justify-content: space-around;
+        color: $accent;
+    }
+
+    .tour-info {
+        margin: 20px 0;
     }
 }
