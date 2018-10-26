@@ -23,10 +23,13 @@
     </div>
   </form>
 
-  <div class="successfuly-sended" *ngIf="!sended">
-    <i class="material-icons airplane">
+  <div class="successfuly-sended animated fadeIn" *ngIf="sended">
+    <i class="material-icons airplane animated" [ngClass]="{'bounceOutUp': fadedIn, 'hide': aiplaneOut}">
       airplanemode_active
     </i>
-    success
+    <div class="success animated hide" [ngClass]="{'show fadedIn': aiplaneOut}">
+      <h1>Надіслано!</h1>
+      <p>Найближчим часом з Вами звяжуться.</p>
+    </div>
   </div>
 </div>

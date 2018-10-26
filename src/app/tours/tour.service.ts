@@ -15,7 +15,7 @@ export class TourService {
   constructor(private afs: AngularFirestore, private fi: AngularFireStorage) {
     this.toursCollection = this.afs.collection('tours', ref =>
       ref.orderBy('published', 'desc')
-    )
+    ),
     this.tourRequests = this.afs.collection('tourRequests', ref =>
       ref.orderBy('requested', 'desc')
     )

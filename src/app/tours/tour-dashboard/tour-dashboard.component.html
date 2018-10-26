@@ -33,8 +33,8 @@
   </button>
 </section>
 
-<div class="container">
-  <h1>Запити:</h1>
+<h1 class="rqs-title">Запити:</h1>
+<div class="container rqs-container">
   <mat-card class="rqs-card" *ngFor="let requests of tourRqs | async">
     <mat-card-content>
       {{ requests.requested.toDate() | date: "dd.MM.y" }}

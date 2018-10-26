@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
+
 import { TourService } from '../../tours/tour.service';
 
 @Component({
@@ -12,7 +14,12 @@ export class ContactFormDialogComponent implements OnInit {
   contactForm: FormGroup;
   sended: boolean = false;
 
+  //animations
+  fadedIn: boolean = false;
+  aiplaneOut: boolean = false;
+
   constructor(
+    private dialogRef: MatDialogRef<ContactFormDialogComponent>,
     private tourService: TourService,
     private fb: FormBuilder
     ) {
@@ -33,7 +40,15 @@ export class ContactFormDialogComponent implements OnInit {
 
     this.tourService.addRequest(data);
     this.sended = true;
+    this.succcessAnimation();
 
-    this.contactForm.reset();
+    setTimeout(() => { this.dialogRef.close() }, 5000);
+  }
+
+  succcessAnimation() {
+    if (this.sended) {
+      setTimeout(() => { this.fadedIn = true; }, 1000);
+      setTimeout(() => { this.aiplaneOut = true; }, 1600);
+    }
   }
 }

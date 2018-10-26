@@ -8,6 +8,7 @@
 
 .successfuly-sended {
     background-color: $white;
+    color: $success;
     position: absolute;
     top: 0;
     right: 0;
@@ -15,4 +16,10 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    margin: 2px;
+
+    .airplane {
+        font-size: 100px;
+    }
 }

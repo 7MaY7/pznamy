@@ -32,5 +32,4 @@ export class TourListComponent implements OnInit {
       width: '350px'
     });
   }
-
 }
