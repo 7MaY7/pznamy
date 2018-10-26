@@ -12,6 +12,7 @@
     <img mat-card-image [src]="tour.image" alt="{{tour.country +', '+ tour.city }}">
     <mat-card-content>
       <h2>{{tour.country +", "+ tour.city }}</h2>
+      <div class="overal-info"></div>
       <h4>{{tour.dateFrom.toDate() | date: "dd.MM.y"}}</h4>
       <p>
         {{tour.infoShort}}

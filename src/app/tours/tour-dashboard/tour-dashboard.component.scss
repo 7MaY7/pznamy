@@ -4,6 +4,15 @@ section {
 
     mat-form-field {
         width: 100%;
+
+        &.short-input {
+            width: 15%;
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
 
     img {
@@ -20,6 +29,12 @@ section {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+}
+
+.container {
+    h1 {
+        text-align: center;
+    }
 
     .rqs-card {
         max-width: 300px;

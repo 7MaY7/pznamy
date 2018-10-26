@@ -1,16 +1,66 @@
 <section>
-  <div>
-    <input type="file" name="file" id="file" (change)="uploadImage($event)">
-    <div [hidden]="!uploadPercent">
-      <mat-progress-bar mode="determinate" value="{{uploadPercent | async}}" color="primary"></mat-progress-bar>
-    </div>
-    <div [hidden]="!image">
-      <img [src]="image || '//:0'">
-      <!-- //:0 - fake data to prevent 404 error -->
-    </div>
-  </div>
+    <!-- <div>
+        <mat-form-field>
+          <input type="file" name="file" id="file" (change)="uploadImage($event)">
+        </mat-form-field>
+        <div [hidden]="!uploadPercent">
+          <mat-progress-bar mode="determinate" value="{{uploadPercent | async}}" color="primary"></mat-progress-bar>
+        </div>
+        <div [hidden]="!image">
+          <img [src]="image || '//:0'"> -->
+          <!-- //:0 - fake data to prevent 404 error -->
+        <!-- </div>
+      </div> -->
 
-  <mat-form-field>
+  <form [formGroup]="addNewTourForm">
+    <h1>Додати тур:</h1>
+
+    <mat-form-field>
+      <input matInput type="text" placeholder="Країна" formControlName="country">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" placeholder="Місто" formControlName="city">
+    </mat-form-field>
+    
+    <mat-form-field class="short-input">
+      <input matInput [matDatepicker]="picker" placeholder="Дата з:" formControlName="dateFrom">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="short-input">
+      <input matInput type="number" placeholder="Кількість днів" formControlName="days">
+    </mat-form-field>
+
+    <mat-form-field class="short-input">
+      <input matInput type="text" placeholder="Тип харчування" formControlName="foodType">
+    </mat-form-field>
+
+    <mat-form-field class="short-input">
+      <input matInput type="number" placeholder="Дорослих" formControlName="persons">
+    </mat-form-field>
+
+    <mat-form-field class="short-input">
+      <input matInput type="number" placeholder="Дітей" formControlName="children">
+    </mat-form-field>
+
+    <mat-form-field class="short-input">
+      <input matInput type="number" placeholder="Ціна" formControlName="price">
+    </mat-form-field>
+    
+    <mat-form-field>
+      <textarea matInput placeholder="Інфо" formControlName="info"></textarea>
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button color="accent" [disabled]="!addNewTourForm.valid" (click)='createTour()'>Створити</button>
+    </div>
+  </form>
+
+
+
+  <!-- <mat-form-field>
     <input matInput placeholder="Країна" [(ngModel)]="country">
   </mat-form-field>
   <br>
@@ -30,7 +80,7 @@
   <br>
   <button mat-raised-button color="accent" (click)="createTour()" [disabled]="!country || !infoShort || !city">
     Додати тур
-  </button>
+  </button> -->
 </section>
 
 <h1 class="rqs-title">Запити:</h1>
